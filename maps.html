@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAPS STASIUN</title>
+</head>
+<body>
+    <button id="toggleTheme">Ubah Tema</button>
+
+ 
+   <div class="loader-container" id="loader">
+    <div class="loader"></div>
+    <p>Loading...</p>
+  </div>
+
+  <div class="content" id="content" style="display: none;">
+  </div>
+
+  <h1>Ramalan Cuaca (Open-Meteo)</h1>
+  <div class="weather-box" id="weather">
+    Memuat data cuaca...
+  </div>
+
+
+<style>
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: sans-serif;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+body.dark-mode {
+  --bg-color: #121212;
+  --text-color: #f1f1f1;
+}
+
+button {
+  padding: 10px 20px;
+  cursor: pointer;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+  .loader-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ccc;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+p {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+    #map {
+      height: 100vh;
+  width: 100%;
+    }
+
+
+h2, h3 {
+  margin-bottom: 10px;
+}
+
+ul#jadwal {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+
+    #refresh-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+      padding: 10px 15px;
+      background: rgb(0, 0, 0);
+      border: 1px solid #000000;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+    }
+
+
+    .weather-box {
+      background: #333;
+      padding: 20px;
+      border-radius: 12px;
+      display: inline-block;
+      margin-top: 20px;
+    }
+
+  
+    h1 {
+      color: #4fc3f7;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- Tombol Refresh -->
+<button id="refresh-btn">🔄 Refresh Posisi</button>
+
+<!-- Map Container -->
+<div id="map"></div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+  const toggle = document.getElementById("toggleTheme");
+
+toggle.addEventListener("click", function () {
+  document.body.classList.toggle("dark-mode");
+
+  // Simpan preferensi ke localStorage
+  if (document.body.classList.contains("dark-mode")) {
+    localStorage.setItem("theme", "dark");
+  } else {
+    localStorage.setItem("theme", "light");
+  }
+});
+
+// Saat halaman dibuka, cek preferensi
+window.addEventListener("load", function () {
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-mode");
+  }
+});
+
+  window.addEventListener("load", function () {
+  const loader = document.getElementById("loader");
+  const content = document.getElementById("content");
+
+  setTimeout(() => {
+    loader.style.display = "none";
+    content.style.display = "block";
+  }, 1500); // 1.5 detik loading
+});
+
+  // Map default di Stasiun Telagamurni
+  var map = L.map('map').setView([-6.265, 107.155], 15); // Koordinat Cikarang
+
+  // Tile dari OpenStreetMap
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Marker awal
+  let marker = L.marker([-6.2845, 107.0979]).addTo(map)
+               .bindPopup("Stasiun Telagamurni")
+               .openPopup();
+
+  L.marker([-6.261, 107.154]).addTo(map)
+  .bindPopup('Stasiun Cikarang')
+  .openPopup();
+
+  // Fungsi ambil lokasi pengguna
+  function refreshLokasi() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+
+        // Update marker dan peta
+        marker.setLatLng([lat, lng])
+              .setPopupContent(`Lokasi Kamu: ${lat.toFixed(5)}, ${lng.toFixed(5)}`)
+              .openPopup();
+        map.setView([lat, lng], 16);
+      }, function(error) {
+        alert("Gagal ambil lokasi: " + error.message);
+      });
+    } else {
+      alert("Browser tidak mendukung Geolocation");
+    }
+  }
+
+  // Event tombol
+  document.getElementById("refresh-btn").onclick = refreshLokasi;
+
+  const lat = -6.265;
+    const lon = 107.155;
+
+    // Ambil data suhu dari Open-Meteo
+    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`)
+      .then(res => res.json())
+      .then(data => {
+        const suhu = data.current_weather.temperature;
+        const kecepatanAngin = data.current_weather.windspeed;
+        const arahAngin = data.current_weather.winddirection;
+
+        document.getElementById("weather").innerHTML = `
+          <h2>Lokasi: Telaga murni</h2>
+          <p>🌡️ Suhu: ${suhu} °C</p>
+          <p>💨 Angin: ${arahAngin}° - ${kecepatanAngin} km/jam</p>
+          <p>🕓 Data realtime dari Open-Meteo</p>
+        `;
+      })
+      .catch(error => {
+        document.getElementById("weather").innerHTML = "Gagal mengambil data cuaca.";
+        console.error("Error:", error);
+      });
+
+      // Ambil lokasi pengguna
+navigator.geolocation.getCurrentPosition(pos => {
+  const lat = pos.coords.latitude;
+  const lon = pos.coords.longitude;
+
+  // Set map ke lokasi pengguna
+  const map = L.map('map').setView([lat, lon], 13);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+  // Tambah marker lokasi
+  L.marker([lat, lon]).addTo(map).bindPopup("Lokasi Kamu").openPopup();
+
+  // Ambil cuaca dari Open-Meteo
+  fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m,wind_direction_10m`)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('lokasi').textContent = `Lat: ${lat.toFixed(4)}, Lon: ${lon.toFixed(4)}`;
+      document.getElementById('temp').textContent = data.current.temperature_2m;
+      document.getElementById('wind').textContent = `${data.current.wind_direction_10m}° ${data.current.wind_speed_10m} m/s`;
+    });
+
+}, err => {
+  alert("Akses lokasi ditolak atau tidak tersedia.");
+});
+
+  </script>
+
+</script>
+
+</body>
+</html>

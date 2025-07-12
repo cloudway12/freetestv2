@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="jadwal realtime krl telaga murni versi 1">
+    <title>TELAGA MURNI TRACK INFO</title>
+    
+    <link rel="icon" type=" image" href="lokomotive-kereta-api-indonesia-cc-series-logo-kai-vector-lokomotif-226779512.webp">
+</head>
+<body>
+
+  <div class="loader-container" id="loader">
+    <div class="loader"></div>
+    <p>Loading...</p>
+  </div>
+
+  <div class="content" id="content" style="display: none;">
+  </div>
+
+</html>
+
+    <header class="fcontainer">
+      <nav class="wrapper">
+         <h1 class="navbar">TELAGA MURNI TRACK INFO</h1>
+        <ul class="navigation">
+          <li><a href="jadwal.html">JADWAL</a></li>
+          <li><a href="maps.html">MAPS</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    </div>
+
+     <div class="train-info">
+        <div class="panel">
+         <h2 id="kode">JALUR 1 </h2>
+         <P>TO</P>
+         <h1 id="rute"> KAMPUNG BANDAN DAN ANGKE</h1>
+         <p></p>
+         <p class="time" id="waktu">TERSEDIA</p>
+         <h5>TRACK 1</h5>
+    </div>
+    
+
+    <div class="train-info">
+        <div class="panel">
+         <h2>JALUR 2</h2>
+         <P>TO</P>
+         <h1>CIKARANG</h1>
+         <p></p>
+         <p class="time">TERSEDIA</p>
+         <h5>TRACK 2</h5>
+    </div>
+
+    <div class="slider">
+  <div class="slides">
+    <!-- Slide 1 -->
+    <div class="slide">
+      <img src="IMG_3503.JPG" alt="Berita 1">
+      <div class="caption">
+        6020 berangkat telaga murni menuju kampung bandan
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+      <img src="IMG_3535.JPG" alt="Berita 2">
+      <div class="caption">
+       cc2018917 setelah melintas langsung telaga murni menarik ka menoreh
+      </div>
+    </div>
+    <!-- Slide 3 -->
+    <div class="slide">
+      <img src="IMG_4393.jpg" alt="Berita 3">
+      <div class="caption">
+       KA MANAHAN dari solo melintas langsung sore hari
+      </div>
+    </div>
+   
+    <div class="slide">
+      <img src="_MG_0726.JPG" alt="Berita 4">
+      <div class="caption">
+       PARCEL UTARA PERSIAPAN MELINTAS LANGSUNG TELAGA MURNI
+      </div>
+    </div>
+
+    <!-- Tambahkan slide lainnya sesuai kebutuhan -->
+  </div>
+
+  <!-- Tombol navigasi -->
+  <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+  <button class="next" onclick="moveSlide(1)">&#10095;</button>
+</div>
+
+  <form id="uploadForm" enctype="multipart/form-data">
+    <input type="file" name="foto" required>
+    <button type="submit">Upload</button>
+  </form>
+
+   <section class="hero">
+    <h1>TUJUAN DIBUATNYA WEBSITE INI</h1>
+    <div class="content">
+      <img src="WhatsApp-Image-2020-08-17-at-18.32.49-1024x747.jpeg" alt="Aircraft">
+      <div class="text">
+        <p>
+         Dengan hadir nya Telaga Murni Track Info bisa membantu para penumpang yang tidak mempunyai
+         aplikasi bisa melihatnya disini
+        </p>
+        <p>
+         Website ini bersifat gratis tidak dipungut biaya sekali pun, tapi website ini akan terus di kembangkan
+         hingga versi belum di tentukan.
+        </p>
+        <p>
+         Kami harap kalian bisa mengunakan website ini sebaik mungkin hingga website ini punah
+        </p>
+      </div>
+    </div>
+
+    <footer class="footer">
+  <div class="footer-top">
+    <div class="footer-logo">TELAGA MURNI TRACK INFO</div>
+    <div class="footer-links">
+      <div>
+        <h4>Connected websites</h4>
+        <ul>
+          <li><a href="#">Website 1</a></li>
+          <li><a href="#">Website 2</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Useful links</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-contact">
+      <p>Let's stay in touch</p>
+      <button>Contact us</button>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© TELAGA MURNI TRACK INFO 2025.</p>
+    <p><a href="#">Privacy policy</a> | <a href="#">Terms of use</a></p>
+  </div>
+</footer>
+
+
+    
+
+    <style>
+       body{
+       background-image: white;
+       background-size: cover;
+       background-position: center;
+       color: white;
+       margin: 0;
+      padding: 20px;
+    }
+
+
+    .fcontainer{
+      height: 30vh; 
+    }
+
+    .wrapper{
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 20px;
+      padding: 15px;
+      width: 100%;
+      height: 20dvh;
+      background-color: #000;
+    }
+
+    .navigation{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+       padding: 15px;
+    }
+     
+    .navigation>li{
+   list-style-type: none;
+    display: flex;
+      justify-content: center;
+      align-items: center;
+       padding: 15px;
+    }
+
+    .navigation>li>a{
+   color: white;
+   font-size: 20px;
+   text-decoration: none;
+    }
+
+     h2{
+       text-align: center;
+       margin-bottom: 30px;
+       background-color: black;
+       border-radius: 20px;
+     }
+
+
+     h3 {
+        border-radius: 10px;
+        text-align: center;
+      margin-bottom: 20px;
+      background-color: darkkhaki ;
+}
+
+ h5{
+  display: flex;
+  justify-content: flex-end;
+box-sizing: border-box;
+
+
+ }
+
+.tr{
+  background: #1a2c49;
+  border: 3px solid #ffcc00;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
+
+.panel {
+  background: #1a2c49;
+  border: 3px solid #ffcc00;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
+
+.panel h3 {
+  margin: 0 0 10px;
+  color: #ffcc00;
+}
+
+.panel .time {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.slider {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ccc;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+}
+
+.slide {
+  min-width: 100%;
+  position: relative;
+}
+
+.slide img {
+  width: 100%;
+  display: block;
+}
+
+.caption {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  background: rgba(0,0,0,0.5);
+  padding: 10px;
+  max-width: 90%;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  font-size: 20px;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+form {
+  margin-bottom: 30px;
+}
+
+input[type="file"] {
+  padding: 10px;
+  margin-right: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+
+.hero {
+  padding: 40px;
+  text-align: center;
+  row-gap: 5px;
+}
+
+.hero h1 {
+  color: #d9531e;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.content img {
+  width: 400px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.text {
+  max-width: 500px;
+  text-align: left;
+}
+
+.text p {
+  margin-bottom: 15px;
+  line-height: 1.6;
+  color: #000;
+}
+
+.footer {
+  background-color: #001d3d;
+  color: white;
+  padding: 40px 20px;
+  font-family: sans-serif;
+}
+
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+}
+
+.footer-logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.footer-links {
+  display: flex;
+  gap: 40px;
+}
+
+.footer-links h4 {
+  margin-bottom: 10px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  margin: 5px 0;
+}
+
+.footer-contact {
+  text-align: right;
+}
+
+.footer-contact button {
+  background: white;
+  color: #001d3d;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  margin-top: 8px;
+  font-weight: bold;
+}
+
+.footer-bottom {
+  margin-top: 20px;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-bottom a {
+  color: #aaa;
+  text-decoration: none;
+}
+
+</style>
+
+<script>
+  
+// Saat halaman dibuka, cek preferensi
+window.addEventListener("load", function () {
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-mode");
+  }
+});
+
+window.addEventListener("load", function () {
+  const loader = document.getElementById("loader");
+  const content = document.getElementById("content");
+
+  setTimeout(() => {
+    loader.style.display = "none";
+    content.style.display = "block";
+  }, 1500); // 1.5 detik loading
+});
+
+
+
+  let slideIndex = 0;
+  const slides = document.querySelector('.slides');
+  const totalSlides = document.querySelectorAll('.slide').length;
+
+  function moveSlide(step) {
+    slideIndex += step;
+    if (slideIndex < 0) slideIndex = totalSlides - 1;
+    if (slideIndex >= totalSlides) slideIndex = 0;
+
+    slides.style.transform = 'translateX(' + (-slideIndex * 100) + '%)';
+  }
+
+  // Auto-slide setiap 5 detik
+  setInterval(() => moveSlide(1), 5000);
+
+ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  await fetch('/upload', { method: 'POST', body: formData });
+  e.target.reset();
+  loadGallery();
+});
+
+
+
+async function loadGallery() {
+  const res = await fetch('/images');
+  const images = await res.json();
+
+  const gallery = document.getElementById('gallery');
+  gallery.innerHTML = '';
+
+  images.forEach(url => {
+    const div = document.createElement('div');
+    div.className = 'slide';
+    div.innerHTML = `<img src="${url}" />`;
+    gallery.appendChild(div);
+  });
+
+  updateSlider();
+}
+
+function moveSlide(n) {
+  const total = document.querySelectorAll('.slide').length;
+  slideIndex = (slideIndex + n + total) % total;
+  updateSlider();
+}
+
+function updateSlider() {
+  const width = document.querySelector('.slide')?.offsetWidth || 600;
+  document.querySelector('.slides').style.transform = `translateX(-${slideIndex * width}px)`;
+}
+
+loadGallery();
+
+
+</script>
+
+
+ </body>
+</html>
